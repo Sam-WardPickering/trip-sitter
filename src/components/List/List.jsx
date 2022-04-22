@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select} from '@material-ui/core';
 
-function List() {
+import useStyles from './styles';
+
+const List = () => {
+  const classes = useStyles();
+  const [type, setType] = useState('restaurants');
+
   return (
-    <h1>List</h1>
-  )
+    <div className={classes.container}>
+      <Typography variant="h4">
+        Nearby Restaurants, Hotels & Attractions
+      </Typography>
+      <FormControl className={classes.formControl}>
+        <InputLabel>Type</InputLabel>
+        <Select value={} onChange={}>
+          <MenuItem value="restaurants">Restaurants</MenuItem>
+          <MenuItem value="hotels">Hotels</MenuItem>
+          <MenuItem value="attractions">Attractions</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+  );
 }
 
 export default List
