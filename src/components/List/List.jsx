@@ -14,6 +14,12 @@ const List = () => {
     { name: 'Cool Place' },
     { name: 'Best Place' },
     { name: 'Best Steak' },
+    { name: 'Cool Place' },
+    { name: 'Best Place' },
+    { name: 'Best Steak' },
+    { name: 'Cool Place' },
+    { name: 'Best Place' },
+    { name: 'Best Steak' },
   ];
 
   return (
