@@ -18,7 +18,7 @@ const App = () => {
         console.log(data)
         setPlaces(data)
       })
-  }, []);
+  }, [coordinates, bounds]);
 
   return (
     <>
