@@ -8,12 +8,17 @@ import Map from './components/Map/Map';
 
 const App = () => {
   const [places, setPlaces] = useState([]);
-  const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
+  const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState(null);
 
   useEffect(() => {
-    console.log(coordinates, bounds);
-    getPlacesData()
+    navigator.geolocation.getCurrentPosition(( { coords: { latitude, longitude } }) => {
+      setCoordinates({ lat: latitude, lng: longitude });
+    })
+  }, [])
+
+  useEffect(() => {
+    getPlacesData(bounds.sw, bounds.ne)
       .then((data) => {
         console.log(data)
         setPlaces(data)
