@@ -7,7 +7,6 @@ import Rating from '@material-ui/lab/Rating';
 import useStyles from './styles'
 
 function PlaceDetails({ place }) {
-  
   const classes = useStyles();
 
   return (
@@ -55,7 +54,6 @@ function PlaceDetails({ place }) {
           </Button>
         </CardActions>
       </CardContent>
-
     </Card>
   );
 }
