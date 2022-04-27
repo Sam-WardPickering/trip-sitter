@@ -12,7 +12,7 @@ const List = ({ places, childClicked }) => {
   const [elementRefs, setElementRefs] = useState([]);
 
   useEffect(() => {
-    const refs = Array(places.length).fill().map((_, i) => elementRefs[i] || createRef());
+    const refs = Array(places?.length || null).fill().map((_, i) => elementRefs[i] || createRef());
 
     setElementRefs(refs);
   }, [places])
@@ -40,8 +40,8 @@ const List = ({ places, childClicked }) => {
         </Select>
       </FormControl>
       <Grid container spacing={3} className={classes.list}>
-        {places?.map((place, index) => (
-          <Grid ref={elementRefs[i]} item key={index} xs={12}>
+        {places?.map((place, i) => (
+          <Grid ref={elementRefs[i]} item key={i} xs={12}>
               <PlaceDetails 
                 place={place} 
                 selected={Number(childClicked) === i}
