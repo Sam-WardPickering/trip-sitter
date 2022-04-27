@@ -5,23 +5,27 @@ import PlaceDetails from '../PlaceDetails/PlaceDetails';
 
 import useStyles from './styles';
 
-const List = ({ places, childClicked }) => {
+const List = ({ places, childClicked, isLoading }) => {
   const classes = useStyles();
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState('');
   const [elementRefs, setElementRefs] = useState([]);
 
   useEffect(() => {
-    const refs = Array(places?.length || null).fill().map((_, i) => elementRefs[i] || createRef());
+    const refs = Array(places?.length).fill().map((_, i) => elementRefs[i] || createRef());
 
     setElementRefs(refs);
   }, [places])
 
   return (
     <div className={classes.container}>
-      <Typography variant="h4">
-        Nearby Restaurants, Hotels & Attractions
-      </Typography>
+      <Typography variant="h4">Nearby Restaurants, Hotels & Attractions</Typography>
+      {isLoading ? (
+        <div className={classes.loading}>
+          <CircularProgress size="5rem" />
+        </div>
+      ) : (
+        <>
       <FormControl className={classes.formControl}>
         <InputLabel>Type</InputLabel>
         <Select value={type} onChange={(e) => setType(e.target.value)}>
@@ -50,6 +54,8 @@ const List = ({ places, childClicked }) => {
           </Grid>
         ))}
       </Grid>
+      </>
+      )}
     </div>
   );
 }
