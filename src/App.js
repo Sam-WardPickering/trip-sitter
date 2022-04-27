@@ -35,15 +35,20 @@ const App = () => {
   
   // occurs when the type, coordinates or bounds change
   useEffect(() => {
-    setIsLoading(true)
+    if(bounds.sw && bounds.ne) {
+      setIsLoading(true)
 
-    getPlacesData(type, bounds.sw, bounds.ne)
-      .then((data) => {
-        setPlaces(data);
-        setFilteredPlaces([]);
-        setIsLoading(false);
+      getPlacesData(type, bounds.sw, bounds.ne)
+        .then((data) => {
+          setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
+          setFilteredPlaces([]);
+          setIsLoading(false);
       })
-  }, [type, coordinates, bounds]);
+    }
+  }, [type, bounds]);
+
+  console.log(places)
+  console.log(filteredPlaces)
 
   return (
     <>
